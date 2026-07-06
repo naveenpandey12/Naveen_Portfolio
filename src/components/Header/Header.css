@@ -1,0 +1,191 @@
+/* =========================
+   Header
+========================= */
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  transition: 0.35s ease;
+  padding: 20px 0;
+}
+
+.header.sticky {
+  background: rgba(2, 6, 23, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, .25);
+  padding: 14px 0;
+}
+
+/* =========================
+   Navigation
+========================= */
+
+.nav-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--light);
+  cursor: pointer;
+  user-select: none;
+}
+
+.logo span {
+  color: var(--primary);
+}
+
+/* =========================
+   Desktop Menu
+========================= */
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 35px;
+}
+
+.nav-link {
+  background: transparent;
+  border: none;
+  color: var(--light);
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  position: relative;
+  transition: var(--transition);
+}
+
+.nav-link:hover {
+  color: var(--primary);
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -8px;
+  width: 0;
+  height: 2px;
+  background: var(--primary);
+  transition: .35s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+.nav-link.active {
+  color: var(--primary);
+}
+
+/* =========================
+   Mobile Button
+========================= */
+
+.menu-btn {
+  display: none;
+  color: var(--light);
+  font-size: 28px;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.menu-btn:hover {
+  color: var(--primary);
+}
+
+/* =========================
+   Responsive
+========================= */
+
+@media (max-width: 992px) {
+
+  .menu-btn {
+    display: block;
+    z-index: 1001;
+  }
+
+  .nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: rgba(15, 23, 42, .98);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 0;
+
+    max-height: 0;
+    overflow: hidden;
+
+    transition: max-height .4s ease;
+  }
+
+  .nav.active {
+    max-height: 500px;
+    border-top: 1px solid var(--border);
+    padding: 15px 0;
+  }
+
+  .nav-link {
+    width: 100%;
+    padding: 18px;
+    text-align: center;
+    font-size: 17px;
+  }
+
+  .nav-link::after {
+    display: none;
+  }
+
+}
+
+@media (max-width:768px){
+
+  .logo{
+      font-size:26px;
+  }
+
+}
+
+@media (max-width:576px){
+
+  .header{
+      padding:16px 0;
+  }
+
+  .header.sticky{
+      padding:12px 0;
+  }
+
+  .logo{
+      font-size:24px;
+  }
+
+  .menu-btn{
+      font-size:24px;
+  }
+
+}
+
+
+.nav-link:focus-visible,
+.menu-btn:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 4px;
+  border-radius: 6px;
+}
